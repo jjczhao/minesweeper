@@ -15,6 +15,10 @@ class Board
         @grid.length if @grid
     end
 
+    def reveal(pos)
+        self[pos].reveal
+    end
+
     private
     def init_tiles
         @grid.each do |row|
