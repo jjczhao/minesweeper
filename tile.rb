@@ -8,7 +8,7 @@ class Tile
         @tile_status = ""
     end
 
-    def neighbors
+    def find_neighbors
         possible_neighbors = [[-1,-1],[-1,0],[-1,1],[0,-1],[0,1],[1,-1],[1,0],[1,1]]
         neighbor_tiles = []
         possible_neighbors.each do |possible_neighbor|
@@ -32,11 +32,18 @@ class Tile
     def reveal
         if self.tile != 0
             self.tile_status = "r"
-            return 
+            return
         end
-        self.neighbors.each do |neighbor|
+        
+        if self.tile == "b" || self.tile_status == "r"
+            return
+        end
+
+        self.tile_status = "r"
+        @neighbors.each do |neighbor|
             neighbor.reveal
         end
+    
     end
 
     def inspect

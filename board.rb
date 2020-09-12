@@ -12,18 +12,47 @@ class Board
     end
 
     def length
-        @grid.length if @grid
+        @grid.length
     end
 
     def reveal(pos)
         self[pos].reveal
     end
 
+    def win?
+        @grid.each do |row|
+            return false if not row.all? {|tile| tile.tile != "b" && tile.tile_status == "r"}
+        end
+        true
+    end
+
+    def lose?
+        @grid.each do |row|
+            return true if row.any?{|tile| tile.tile == "b" && tile.tile_status == "r"}
+        end
+        false
+    end
+
+    def gameover?
+        self.win? || self.lose?
+    end
+
+    def print_board
+        print "   #{(0...self.length).to_a.join(" ")}\n"
+        @grid.each_with_index do |row, i|
+            print "#{i}| "
+            row.each_with_index do |tile, j|
+                print tile.tile_status == "" ? "- " : "#{tile.tile} "
+            end
+            puts
+        end
+    end
+
     private
     def init_tiles
         @grid.each do |row|
             row.each do |tile|
-                tile.neighbors
+                tile.find_neighbors
                 tile.neighbors_bomb_count
             end
         end
@@ -41,6 +70,4 @@ class Board
         end
         init_tiles
     end
-
-
 end
