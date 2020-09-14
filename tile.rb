@@ -29,6 +29,10 @@ class Tile
         self.tile = count if self.tile != "b" 
     end
 
+    def flag
+        self.tile_status = "f"
+    end
+
     def reveal
         if self.tile != 0
             self.tile_status = "r"

@@ -16,7 +16,15 @@ class Board
     end
 
     def reveal(pos)
-        self[pos].reveal
+        if self[pos].tile_status == "f"
+            puts "The position has been flagged, try another one!"
+        else
+            self[pos].reveal
+        end 
+    end
+
+    def flag(pos)
+        self[pos].flag
     end
 
     def win?
@@ -42,7 +50,11 @@ class Board
         @grid.each_with_index do |row, i|
             print "#{i}| "
             row.each_with_index do |tile, j|
-                print tile.tile_status == "" ? "- " : "#{tile.tile} "
+                if tile.tile_status == "f"
+                    print "f "
+                else
+                    print tile.tile_status == "" ? "- " : "#{tile.tile} "
+                end
             end
             puts
         end

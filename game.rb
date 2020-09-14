@@ -1,8 +1,11 @@
 require_relative "board"
-
+require "remedy"
+include Remedy
 class Game
     def initialize
         @board = Board.new
+        @user_input = Interaction.new
+        @current_pos = [0,0]
     end
 
     def get_input
