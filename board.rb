@@ -2,6 +2,9 @@ require_relative "tile"
 
 
 class Board
+
+    attr_reader :grid
+
     def initialize
         @grid = Array.new(9){ Array.new(9){ "b" if rand(100) <= 20 } }
         populate_board
@@ -45,20 +48,7 @@ class Board
         self.win? || self.lose?
     end
 
-    def print_board
-        print "   #{(0...self.length).to_a.join(" ")}\n"
-        @grid.each_with_index do |row, i|
-            print "#{i}| "
-            row.each_with_index do |tile, j|
-                if tile.tile_status == "f"
-                    print "f "
-                else
-                    print tile.tile_status == "" ? "- " : "#{tile.tile} "
-                end
-            end
-            puts
-        end
-    end
+
 
     private
     def init_tiles

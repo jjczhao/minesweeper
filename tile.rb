@@ -1,5 +1,5 @@
 class Tile
-    attr_accessor :tile, :tile_status
+    attr_accessor :tile, :tile_status, :pos
     def initialize(pos, tile, board)
         @pos = pos
         @tile = tile
