@@ -30,7 +30,7 @@ class Tile
     end
 
     def flag
-        self.tile_status = "f"
+        self.tile_status = self.tile_status == "f" ? "" : "f"
     end
 
     def reveal

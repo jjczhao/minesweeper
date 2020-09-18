@@ -34,6 +34,7 @@ class Board
         @grid.each do |row|
             return false if not row.all? {|tile| tile.tile != "b" && tile.tile_status == "r"}
         end
+        
         true
     end
 
